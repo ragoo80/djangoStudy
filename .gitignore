@@ -1,0 +1,11 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+venv/
+.idea/
+*.iml
+node_modules/
+.DS_Store
