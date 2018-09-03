@@ -1,0 +1,43 @@
+{% extends "stats/base/base.html" %}
+{% block title %}test MLB stats testDB page{% endblock %}
+
+{% block header %}header block extended{% endblock %}
+{% block content %}
+
+    <p>this page is mlb/templates/testform.</p>
+    <h2>testDB 페이지</h2>
+
+    {% if selectList %}
+        <ol class="results">
+            {% for item in selectList %}
+                <li>
+                    {{ item.title}}, {{ item.text}}, {{ item.created_date}}, {{ item.published_date }}, {{ item.author_id }}
+                </li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+
+{#{% for jpara in jparas %}#}
+{#    <tr>#}
+{#        <td>#}
+{#            <p class="ellipsis">#}
+{#                {% if jpara.status == 2 %} <a href="/product/proview/{{jpara.product_code_real|slugify}}" title="등록 제품 보기">{% endif %}#}
+{#                {{ jpara.product_code }}#}
+{#                {% if jpara.status == 2 %} </a> {% endif %}#}
+{#            </p>#}
+{#        </td>#}
+{#        <td>{{ jpara.writer }}</td>#}
+{#        <td>#}
+{#            {% if jpara.status == 1 %}<span class="buttonShapeCheck">검토중</span>#}
+{#            {% elif jpara.status == 2 %}<span class="buttonShapeCom">등록완료</span>#}
+{#            {% elif jpara.status == 0 %}<span class="buttonShapeNo">등록불가<br>(게시판 참조)</span>{% endif %}#}
+{#        </td>#}
+{#        <td>{{ jpara.occured_at|date:"Y/m/d f a"}}</td>#}
+{#    </tr>#}
+{#{% endfor %}#}

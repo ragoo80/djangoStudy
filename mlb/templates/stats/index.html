@@ -10,7 +10,7 @@
     <p>static url : {{ STATIC_URL }}</p>
     <p>SITE_PAGES_DIRECTORY : {{ SITE_PAGES_DIRECTORY }}</p>
 
-
+    <p>{{ request.path | urlencode }}"</p>
 
     {% comment %}<p>&lt;img src="{{ example }}" &gt;</p>
     <ul>

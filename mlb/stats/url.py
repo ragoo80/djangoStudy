@@ -1,20 +1,23 @@
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import url
-from . import views
-# from stats import views
-
+from django.conf.urls import include, url
+from stats import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # url(r'^(?P<slug>[\w./-]+)/$', views.page)
-
-    # url(r'^index/$', views.index, name="index"),
-    # url(r'^team(?P<team_name>[\w./-]+)/$', views.team, name='team'),
-    # url(r'^player(?P<player_id>[\w./-]+)/$', views.player, name='player'),
-
+    # url(r'^$', TemplateView.as_view(template_name='board/index.html')),
 
     url(r'^$', views.index),
     url(r'^index/$', views.index),
     url(r'^sub/$', views.sub),
-]
 
+    url(r'^post/$', views.post, name='post'),
+    url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail, name='post_detail'),
+    # url(r'^post/new/$', views.post_new, name='post_new'),
+    url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
+
+    url(r'^testform/$', views.test_form, name='test_form'),
+    url(r'^testDB/$', views.test_db, name='test_db'),
+    url(r'^ormSelect/$', views.orm_select, name='orm_select'),
+]

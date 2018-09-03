@@ -1,0 +1,18 @@
+{% extends "stats/base/base.html" %}
+{% block title %}test MLB stats post detail page{% endblock %}
+
+{% block header %}header block extended{% endblock %}
+{% block content %}
+    <p>this page is mlb/templates/post detail.</p>
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaks }}</p>
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">포스트 수정</a>
+    </div>
+{% endblock %}
+{% block footer %}footer block extended{% endblock %}

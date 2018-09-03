@@ -1,0 +1,13 @@
+{% extends "stats/base/base.html" %}
+{% block title %}test MLB stats post edit page{% endblock %}
+
+{% block header %}header block extended{% endblock %}
+{% block content %}
+    <p>this page is mlb/templates/post edit.</p>
+    <h1>New post</h1>
+    <form method="POST" class="post-form">
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
+{% block footer %}footer block extended{% endblock %}

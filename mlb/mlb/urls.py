@@ -16,10 +16,27 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+
+
+
+
 urlpatterns = [
+    url(r'^admin/', admin.site.urls),
     url(r'', include('stats.url'), name='stats'),
-    url(r'^admin/', admin.site.urls)
+
+
+    # url(r'^api/token/', obtain_auth_token, name='api-token'),
+    # url(r'^api/', include(router.urls)),
 ]
+
+
+
+
+
+
+
+
+
 
 
 

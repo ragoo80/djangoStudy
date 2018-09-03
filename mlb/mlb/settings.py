@@ -34,16 +34,22 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party apps
+    # 'rest_framework',
+    # 'rest_framework.authtoken',
+    # internal apps
     'stats'
 ]
 
 MIDDLEWARE = [
+    # annotation SessionMiddleware, AuthenticationMiddleware for rest_framework study
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -174,7 +180,7 @@ STATICFILES_FINDERS = (
 
 # refer end ----------------------------------------------------
 
-# admin -> ragoo/tt43uu22
+# admin -> root/tt43uu22
 
 # 장고 배포 환경 설정 - 꼭 테스트 해볼것
 # http://juliahwang.kr/%EB%AA%A8%EB%82%B4%EA%B8%B0%20%EC%8A%A4%ED%84%B0%EB%94%94/2017/09/13/1.2-%EC%9E%A5%EA%B3%A0%EB%B0%B0%ED%8F%AC%ED%99%98%EA%B2%BD%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0.html

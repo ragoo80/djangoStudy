@@ -1,0 +1,35 @@
+{% extends "stats/base/base.html" %}
+{% block title %}test MLB stats testDB page{% endblock %}
+{% block style %}
+    <style type="text/css">
+        li { list-style: none; }
+    </style>
+{% endblock %}
+{% block header %}header block extended{% endblock %}
+{% block content %}
+
+    <p>this page is mlb/templates/ormSelect.</p>
+    <h2>orm select test 페이지</h2>
+
+    {% comment %}{% if selectedList %}
+        <ol class="results">
+            {% for item in selectedList %}
+                <li>{{ item.id }}, {{ item.title }}, {{ item.text}}, {{ item.created_date}}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}{% endcomment %}
+
+
+    {% comment %}{% if selectedList %}
+        <ol class="results">
+        {% for item in selectedList %}
+            <li>
+            {% for subItem in item %}
+            {{ subItem|safe }}
+            {% endfor %}
+            </li>
+        {% endfor %}
+        </ol>
+    {% endif %}{% endcomment %}
+
+{% endblock %}
