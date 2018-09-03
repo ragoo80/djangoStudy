@@ -1,0 +1,28 @@
+{% extends "stats/base/base.html" %}
+{% block title %}test MLB stats testDB page{% endblock %}
+{% block style %}
+    <style type="text/css">
+        li { list-style: none; }
+    </style>
+{% endblock %}
+{% block header %}header block extended{% endblock %}
+{% block content %}
+
+    <p>this page is mlb/templates/ormFilter.</p>
+    <h2>orm filter test 페이지</h2>
+
+
+    {# test1 in views orm_filter function #}
+    {% comment %}
+    {% if selectedList %}
+        <ol class="results">
+        {% for item in selectedList %}
+            <li>
+                {{ item.title | safe }} ,{{ item.text | safe }}
+            </li>
+        {% endfor %}
+        </ol>
+    {% endif %}
+    {% endcomment %}
+
+{% endblock %}

@@ -217,41 +217,64 @@ def test_db(request):
 
 # ----------------------------   django orm test start   -------------------------------------------
 def orm_select(request) :
+    # test1
     # selectedList = testMapper.DB_connect('post_select_test')
 
+    # test2
     # querySet은 list로 변환 가능
-    # print ( type(Post.objects.get(title='redirect test')) ) --> <class 'stats.sql.model.testModel.Post'> --> list로 type변환 불가능
+    # selectedList = list(Post.objects.all())
     # print ( type(Post.objects.all()) ) --> <class 'django.db.models.query.QuerySet'> --> list로 type변환 가능
 
-    # row = Post.objects.get(title='redirect test')   #return object
+    # test3
+    # selectedList = Post.objects.get(title='redirect test')   #return object
+    # print ( type(Post.objects.get(title='redirect test')) ) --> <class 'stats.sql.model.testModel.Post'> --> list로 type변환 불가능
     # 아래 접근 가능
-    # print(row.id)
-    # print(row.title)
-    # print(row.text)
-    # print(row.created_date)
-    # print  dir(row)
-    # contents = [row.__dict__[key] for key in row.__dict__.iterkeys()]
+    # print(selectedList.id)
+    # print(selectedList.title)
+    # print(selectedList.text)
+    # print(selectedList.created_date)
+    # print dir(selectedList)
+    # contents = [selectedList.__dict__[key] for key in selectedList.__dict__.iterkeys()]
     # print  contents
+    # for key in selectedList.__dict__.iterkeys() :
+    #     print 'key is : ' , key , ', and value is : ' , selectedList.__dict__[key]
+    #     print selectedList[str(key)] --> 안됨 --> TypeError: 'Post' object has no attribute '__getitem__'
 
-    # for key in row.__dict__.iterkeys() :
-    #     print 'key is : ' , key , ', and value is : ' , row.__dict__[key]
-    #     print row[str(key)] --> 안됨 --> TypeError: 'Post' object has no attribute '__getitem__'
-
-
+    # test4
+    # select using values_list
     # title, text 필드의 값들만 뽑아냄
-    selectedList = list(Post.objects.values_list('title', 'text'))
+    # selectedList = list(Post.objects.values_list('title', 'text'))
     # if ( len(selectedList) ) :
     #     for i in range(len(selectedList)) :
-    #         print 'title 속성은 : ', i[0], ', text 내용은 : ', i[1]
+    #         print 'title 속성은 : ', selectedList[i][0], ', and text 내용은 : ', selectedList[i][1]
 
-
-
-
-
-    # for push test one more time aa
     context = {
         'STATIC_URL' : settings.STATIC_URL,
         'selectedList' : selectedList
     }
     template = loader.get_template(cureentApp+'ormSelect.html')
     return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
+
+def orm_filter(request) :
+    queryset = Post.objects.all()
+    # queryset = Post.objects.all()[:5:10] -> 순서대로 5 ~ 10번까지
+    # queryset = Post.objects.all()[:10:2] -> 순서대로 10번까지 2단계 단위로 뽑아냄
+
+    # test1
+    # selectedList = queryset.filter(title__icontains='typ').filter(text__contains='con').values()
+    selectedList = queryset.filter(title__icontains='typ').filter(text__contains='con').values('title', 'text')
+    print selectedList
+
+    # test2
+    # print [item.text for item in queryset]
+    # print list(item.text for item in queryset)
+
+
+
+    context = {
+        'STATIC_URL' : settings.STATIC_URL,
+        'selectedList' : selectedList
+    }
+    template = loader.get_template(cureentApp+'ormFilter.html')
+    return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
+

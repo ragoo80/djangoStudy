@@ -11,25 +11,55 @@
     <p>this page is mlb/templates/ormSelect.</p>
     <h2>orm select test 페이지</h2>
 
-    {% comment %}{% if selectedList %}
+    {# select using testMapper.DB_connect('post_select_test') in views orm_select function #}
+    {% comment %}
+    {% if selectedList %}
         <ol class="results">
             {% for item in selectedList %}
                 <li>{{ item.id }}, {{ item.title }}, {{ item.text}}, {{ item.created_date}}</li>
             {% endfor %}
         </ol>
-    {% endif %}{% endcomment %}
+    {% endif %}
+    {% endcomment %}
 
+    {# select using list(Post.objects.all()) in views orm_select function #}
+    {% comment %}
+    {% if selectedList %}
+        <ol class="results">
+            {% for item in selectedList %}
+                <li>{{ item.id }}, {{ item.title }}, {{ item.text}}, {{ item.created_date}}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+    {% endcomment %}
 
-    {% comment %}{% if selectedList %}
+    {# select using Post.objects.get(title='redirect test') in views orm_select function #}
+    {% comment %}
+    <ol class="results">
+        <li>selected id is : {{ selectedList.id }}</li>
+        <li>selected title is : {{ selectedList.title }}</li>
+        <li>selected text is : {{ selectedList.text }}</li>
+        <li>selected created_date is : {{ selectedList.created_date }}</li>
+    </ol>
+    {% endcomment %}
+
+    {# select using values_list('title','text') in views orm_select function #}
+    {% comment %}
+    {% if selectedList %}
         <ol class="results">
         {% for item in selectedList %}
             <li>
-            {% for subItem in item %}
-            {{ subItem|safe }}
-            {% endfor %}
+                {# 방법1 : tuple type display #}
+                {# title 값은 : {{ item.0|safe }}, text 값은 : {{ item.1|safe }} #}
+                {# 방법1 : 이중 loop로 display #}
+                {% for subItem in item %}
+                {{ subItem|safe }}
+                {% endfor %}
             </li>
         {% endfor %}
         </ol>
-    {% endif %}{% endcomment %}
+    {% endif %}
+    {% endcomment %}
+
 
 {% endblock %}

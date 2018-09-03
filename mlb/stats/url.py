@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^testform/$', views.test_form, name='test_form'),
     url(r'^testDB/$', views.test_db, name='test_db'),
     url(r'^ormSelect/$', views.orm_select, name='orm_select'),
+    url(r'^ormFilter/$', views.orm_filter, name='orm_filter'),
 ]

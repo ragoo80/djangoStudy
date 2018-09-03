@@ -32,6 +32,8 @@ def transformListData(tupleData):
     post_data['title'] = tupleData[1]
     post_data['text'] = tupleData[2]
     post_data['created_date'] = tupleData[3]
+    post_data['published_date'] = tupleData[4]
+    post_data['author_id'] = tupleData[5]
     return post_data
 
 def query_with_fetchone(cnx, cursor):
