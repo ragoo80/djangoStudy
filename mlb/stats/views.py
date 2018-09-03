@@ -248,7 +248,7 @@ def orm_select(request) :
 
 
 
-
+    # for push test
     context = {
         'STATIC_URL' : settings.STATIC_URL,
         'selectedList' : selectedList
