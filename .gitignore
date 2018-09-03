@@ -10,3 +10,4 @@ venv/
 node_modules/
 migrations/
 .DS_Store
+.pyc
