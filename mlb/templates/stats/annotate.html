@@ -1,0 +1,26 @@
+{% extends "stats/base/base.html" %}
+{% block title %}test MLB stats testDB annotate page{% endblock %}
+{% block style %}
+    <style type="text/css">
+        li { list-style: none; }
+    </style>
+{% endblock %}
+{% block header %}header block extended{% endblock %}
+{% block content %}
+
+    <p>this page is mlb/templates/annotate.</p>
+    <h2>orm annotate test 페이지</h2>
+
+
+    {# test1 in views all_id_count function #}
+    {% if all_id_count %}
+        <ol class="results">
+        {% for item in all_id_count %}
+            <li>
+                {{ item | safe }}
+            </li>
+        {% endfor %}
+        </ol>
+    {% endif %}
+
+{% endblock %}

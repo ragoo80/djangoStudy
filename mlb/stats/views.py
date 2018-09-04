@@ -11,12 +11,13 @@ from django.views.decorators.csrf import requires_csrf_token, csrf_exempt
 from django.template.context_processors import csrf
 from django.utils._os import safe_join
 from django.utils import timezone
+from django.db.models import F, Count
+# from django.db.models import F, Sum, Count, Case, When
 
 
 
-from sql.model.testModel import Post
-from django.contrib.auth.models import User
 from forms import PostForm, testForm
+
 
 from sql.mapper import testMapper
 from stats.sql.model.testModel import Post
@@ -263,12 +264,11 @@ def orm_filter(request) :
     # test1
     # selectedList = queryset.filter(title__icontains='typ').filter(text__contains='con').values()
     selectedList = queryset.filter(title__icontains='typ').filter(text__contains='con').values('title', 'text')
-    print selectedList
+    # print selectedList
 
     # test2
     # print [item.text for item in queryset]
     # print list(item.text for item in queryset)
-
 
 
     context = {
@@ -278,3 +278,28 @@ def orm_filter(request) :
     template = loader.get_template(cureentApp+'ormFilter.html')
     return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
 
+
+def annotate(request) :
+    # order_qs = OrderLog.objects.values( 'created', 'product__name', 'product__price' )
+    # order_qs = OrderLog.objects.annotate(
+    #     name=F('product__name'),
+    #     price=F('product__price')
+    # ).values( 'created', 'name', 'price' )
+
+    # daily_count = order_qs.values(
+    #     'created', 'name'
+    # ).annotate(
+    #     count=Count('name')
+    # )
+
+    all_id_count = Post.objects.values('author_id').annotate( count = Count('author_id') )
+    if len(all_id_count) :
+        for ai in all_id_count :
+            print ai
+
+    context = {
+        'STATIC_URL' : settings.STATIC_URL,
+        'all_id_count' : all_id_count
+    }
+    template = loader.get_template(cureentApp+'annotate.html')
+    return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
