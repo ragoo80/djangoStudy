@@ -29,9 +29,13 @@ def getTriangleType(arrList) :
     elif arrList[0] == arrList[1] and arrList[1] == arrList[2] :
         result = '예각삼각형'
     else :
-        for idx in range(len(arrList)) :
-            result = '일반삼각형' if arrList[idx] > 90 else '둔각삼각형'
-            break
+        # 방법1
+        # for idx in range(len(arrList)) :
+        #     result = '둔각삼각형' if arrList[idx] > 90 else '일반삼각형'
+        #     break
+
+        # 방법2 : 삼항식 + max함수
+        result = '둔각삼각형' if max(arrayList) > 90 else '일반삼각형'
     return result
 
 for idx in range(len(arrayList)) :

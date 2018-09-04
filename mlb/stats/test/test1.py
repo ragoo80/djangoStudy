@@ -40,7 +40,7 @@ result = map( lambda x: x+10, [1,2,3] )
 # case by use lamda expression code
 strlist = ["Moon","Earth","Jupiter","Neptune","Earth","Venus"]
 get_indexes = lambda target, list: [index for (value, index) in zip(list, range(len(list))) if target == value]
-print(get_indexes("Earth",strlist))
+# print(get_indexes("Earth",strlist))
 
 # case by just use normal function expression code
 # strlist = ["Moon","Earth","Jupiter","Neptune","Earth","Venus"]
@@ -50,3 +50,15 @@ print(get_indexes("Earth",strlist))
 #         # print 'y is : ', y , 'and i is : ', i
 #     return [ index for (value, index) in zip( list, range(len(list)) ) if target == value ]
 # testFn("Earth",strlist)
+
+# example any,all function ------------------------------------------------------------
+# any 함수는 Iteration 이 가능한 객체를 받아 그 항목을 돌면서 어느 하나라도 True 이면 결과로 True를 리턴
+# print any([False, False, False])    # False
+# print any([False, True, False])     # True
+# 반면 all 함수는 리스트의 모두가 True일 경우만 True
+# print all([False, True, False])    # False
+# print all([True, True, True])    # True
+
+# test max function by tuple ------------------------------------------------------------
+tupleList = (33,55,66)
+print max(tupleList)
