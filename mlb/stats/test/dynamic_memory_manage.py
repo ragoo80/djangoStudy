@@ -24,14 +24,19 @@ class dynamic_memory_manage(object):
 
 
 def main() :
-    '''in python 2.7 version use raw_input()'''
+    ''' in python 2.7 version use raw_input() '''
+    ''' input은 string type으로 return '''
     ea = input("입력할 정수 n개를 입력해 주세요 : ")
-    integers = input("정수를 입력해 주세요 : ").split(',')
+    integers = str( input("정수를 입력해 주세요 : ")).split(',')
     sum = 0
 
-    # for index in range(len(integers)):
-    for value in integers:
-        sum += int(value)
+    # 방법1
+    for index in range(len(integers)):
+        sum += int(integers[index])
+
+    # 방법2
+    # for value in integers:
+    #     sum += int(value)
 
     avg = float(sum/int(ea))
     print (sum, avg)
