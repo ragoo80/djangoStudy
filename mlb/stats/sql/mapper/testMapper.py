@@ -36,7 +36,7 @@ def transformListData(tupleData):
     post_data['author_id'] = tupleData[5]
     return post_data
 
-def query_with_fetchone(cnx, cursor):
+def query_with_fetchall(cnx, cursor):
     # fetchone -> strike/NewProducts/views.py
     # fetchall -> strike/strike3/views.py
     # strike/strike3/views.py

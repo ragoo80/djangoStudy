@@ -153,20 +153,6 @@ def post_edit(request, pk):
         }
         return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
 
-def test_form(request) :
-    if request.method == 'POST' :
-        form = testForm(request.POST)
-        if form.is_valid() :
-            # do nothing, just trigger the validation
-            pass
-    else :
-        form = testForm()
-        template = loader.get_template(cureentApp+'testForm.html')
-        context = {
-            'form': form
-        }
-        return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
-
 # def comment_create(request, post_pk):
 #     # 요청 메서드가 POST방식 일 때만 처리
 #     if request.method == 'POST':
@@ -201,11 +187,32 @@ def test_form(request) :
 #         # 'post'네임스페이스를 가진 url의 'post_list'이름에 해당하는 뷰로 이동
 #         return redirect('post:post_list')
 
+def test_form(request) :
+    if request.method == 'POST' :
+        form = testForm(request.POST)
+        if form.is_valid() :
+            # do nothing, just trigger the validation
+            pass
+    else :
+        form = testForm()
+        template = loader.get_template(cureentApp+'testForm.html')
+        context = {
+            'form': form
+        }
+        return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
+
 # ----------------------------   django form test end   -------------------------------------------
 
+
 # ----------------------------   mysql-connector test start   -------------------------------------------
+# ----------------------------   mysql-connector test end   -------------------------------------------
+
+
+
+# ----------------------------   django orm test start   -------------------------------------------
+
 def test_db(request):
-    selectList = testMapper.DB_connect('query_with_fetchone')
+    selectList = testMapper.DB_connect('query_with_fetchall')
     print ( 'selectList is : ', selectList )
     context = {
         'STATIC_URL' : settings.STATIC_URL,
@@ -213,10 +220,7 @@ def test_db(request):
     }
     template = loader.get_template(cureentApp+'testDB.html')
     return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
-# ----------------------------   mysql-connector test end   -------------------------------------------
 
-
-# ----------------------------   django orm test start   -------------------------------------------
 def orm_select(request) :
     # test1
     # selectedList = testMapper.DB_connect('post_select_test')
@@ -229,6 +233,7 @@ def orm_select(request) :
     # test3
     # selectedList = Post.objects.get(title='redirect test')   #return object
     # print ( type(Post.objects.get(title='redirect test')) ) --> <class 'stats.sql.model.testModel.Post'> --> list로 type변환 불가능
+
     # 아래 접근 가능
     # print(selectedList.id)
     # print(selectedList.title)
@@ -236,7 +241,7 @@ def orm_select(request) :
     # print(selectedList.created_date)
     # print dir(selectedList)
     # contents = [selectedList.__dict__[key] for key in selectedList.__dict__.iterkeys()]
-    # print  contents
+    # print contents
     # for key in selectedList.__dict__.iterkeys() :
     #     print 'key is : ' , key , ', and value is : ' , selectedList.__dict__[key]
     #     print selectedList[str(key)] --> 안됨 --> TypeError: 'Post' object has no attribute '__getitem__'
@@ -270,7 +275,6 @@ def orm_filter(request) :
     # print [item.text for item in queryset]
     # print list(item.text for item in queryset)
 
-
     context = {
         'STATIC_URL' : settings.STATIC_URL,
         'selectedList' : selectedList
@@ -278,24 +282,12 @@ def orm_filter(request) :
     template = loader.get_template(cureentApp+'ormFilter.html')
     return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
 
-
 def annotate(request) :
-    # order_qs = OrderLog.objects.values( 'created', 'product__name', 'product__price' )
-    # order_qs = OrderLog.objects.annotate(
-    #     name=F('product__name'),
-    #     price=F('product__price')
-    # ).values( 'created', 'name', 'price' )
-
-    # daily_count = order_qs.values(
-    #     'created', 'name'
-    # ).annotate(
-    #     count=Count('name')
-    # )
-
-    all_id_count = Post.objects.values('author_id').annotate( count = Count('author_id') )
-    if len(all_id_count) :
-        for ai in all_id_count :
-            print ai
+    # Post Model test annotate by author_id key
+    # all_id_count = Post.objects.values('author_id').annotate( count = Count('author_id') )
+    # if len(all_id_count) :
+    #     for ai in all_id_count :
+    #         print ai
 
     context = {
         'STATIC_URL' : settings.STATIC_URL,
@@ -303,3 +295,6 @@ def annotate(request) :
     }
     template = loader.get_template(cureentApp+'annotate.html')
     return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
+
+
+# ----------------------------   django orm test end   -------------------------------------------

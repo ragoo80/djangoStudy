@@ -52,3 +52,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+# Implements django model
+class Product(models.Model) :
+    name = models.CharField('이름', max_length=100, unique=True)
+    price = models.IntegerField('가격')
+
+# 판매내역
+class OrderLog(models.Model) :
+    product = models.ForeignKey('Product')
+    created = models.DateTimeField(u'판매일')
