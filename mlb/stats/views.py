@@ -291,7 +291,7 @@ def annotate(request) :
 
     context = {
         'STATIC_URL' : settings.STATIC_URL,
-        'all_id_count' : all_id_count
+        # 'all_id_count' : all_id_count
     }
     template = loader.get_template(cureentApp+'annotate.html')
     return HttpResponse(template.render(context), content_type="text/html; charset=UTF-8")
