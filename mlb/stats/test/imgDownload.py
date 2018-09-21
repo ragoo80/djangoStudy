@@ -9,3 +9,6 @@ dr = data.read()
 with open('avante test.jpg', mode="wb") as f:
     f.write(dr)
     print("저장되었습니다.")
+
+
+
