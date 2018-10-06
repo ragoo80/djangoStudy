@@ -41,29 +41,30 @@ pageTotal = 1
 #     "goDetail('66하9815','IJB1106');",
 #     "goDetail('66하9815','ijb1106');"
 # ]
-# pagingList = [
-#     "goDetail('04호 9191','dhkim629');",
-#     "goDetail('06하 5928','teramin47@naver.com');",
-#     "goDetail('13하4869','wjdwprhrh');",
-#     "goDetail('28호 8762','ljh1452');",
-#     "goDetail('35호3832','recess83');",
-#     "goDetail('40하 4590','skyofsiea');",
-#     "goDetail('40허 5976','osj2081');",
-#     "goDetail('40호 7755','pcroom1990@naver.com');",
-#     "goDetail('46호 1798','gamja124');",
-#     "goDetail('50하 6731','JUNJIN1189');",
-#     "goDetail('50하 6758','unicon90');",
-#     "goDetail('54하 3888','dlrndus');",
-#     "goDetail('54호 4281','SEOJIN7866');",
-#     "goDetail('62하 4841','yep36@naver.com');",
-#     "goDetail('62호 1635','lmj6693');",
-#     "goDetail('62호 4885','begetal');",
-#     "goDetail('62 호8575','aggupa');",
-#     "goDetail('64호 2715','hmjang524@naver.com');",
-#     "goDetail('69호 5259','kwon121514');"
-# ]
+pagingList = [
+    "goDetail('04호 9191','dhkim629');",
+    "goDetail('06하 5928','teramin47@naver.com');",
+    "goDetail('13하4869','wjdwprhrh');",
+    "goDetail('28호 8762','ljh1452');",
+    "goDetail('35호3832','recess83');",
+    "goDetail('40하 4590','skyofsiea');",
+    "goDetail('40허 5976','osj2081');",
+    "goDetail('40호 7755','pcroom1990@naver.com');",
+    "goDetail('46호 1798','gamja124');",
+    "goDetail('50하 6731','JUNJIN1189');",
+    "goDetail('50하 6758','unicon90');",
+    "goDetail('54하 3888','dlrndus');",
+    "goDetail('54호 4281','SEOJIN7866');",
+    "goDetail('62하 4841','yep36@naver.com');",
+    "goDetail('62호 1635','lmj6693');",
+    "goDetail('62호 4885','begetal');",
+    "goDetail('62 호8575','aggupa');",
+    "goDetail('64호 2715','hmjang524@naver.com');",
+    "goDetail('69호 5259','kwon121514');"
+]
 
-pagingList = []
+# pagingList = []
+
 # prefs = {'profile.managed_default_content_settings.images': 2} -> 느림
 # chrome_options.add_experimental_option('prefs', prefs) -> 느림
 
@@ -73,7 +74,7 @@ chrome_options.add_argument('no-sandbox')
 chrome_options.add_argument('application-cache')
 ChromeDriver = webdriver.Chrome(webdriver_path+'chromedriver', chrome_options=chrome_options)
 
-ChromeDriver.set_page_load_timeout(30)
+ChromeDriver.set_page_load_timeout(15)
 rp = robotparser.RobotFileParser()
 
 
@@ -207,15 +208,20 @@ def saveImgage(carNumber, htmlSource):
 
 
 def carInfoSaveTest(argStr):
-    try :
-        ChromeDriver.get(urlList['lotte'][1])
-    except TimeoutException as e:
-        print e
+    # try :
+    #     ChromeDriver.get(urlList['lotte'][1])
+    # except TimeoutException as e:
+    #     print e
+
+
 
     detail = argStr
     if page_has_loaded() == 'complete' :
-        ChromeDriver.execute_script(detail)
-        if page_has_loaded() == 'complete' :
+        if pagingList[0] == detail :
+            ChromeDriver.execute_script(detail)
+        else :
+            ChromeDriver.execute_script("scr = document.createElement('script');scr.type=\"text/javascript\";scr.textContent = \"function goDetail(carNumber,userId){$('#carNumber').val(carNumber);$('#userId').val(userId);$('#frm').attr('action','/kor/longsuccession/getLongSuccessionDetail.do').submit();}\";document.head.append(scr);")
+            ChromeDriver.execute_script(detail)
             carNumber = detail.split("'")[1].replace(' ','')
             print 'carNumber', detail.split("'")[1].replace(' ','')
             htmlSource = BeautifulSoup(ChromeDriver.page_source, 'html.parser')
@@ -272,7 +278,7 @@ rowCount = 1
 if canFetch(urlList['lotte'][0], urlList['lotte'][1]) :
 
     startTime =  datetime.datetime.now()
-    getPageCount()
+    # getPageCount()
     today = str( datetime.datetime.today().strftime('%Y-%m-%d') )
     fileName = default_save_path + 'excel/lotteRent-'+ today + '.xlsx'
     if os.path.exists( fileName ):
@@ -285,13 +291,21 @@ if canFetch(urlList['lotte'][0], urlList['lotte'][1]) :
     print 'first rowCount : ', rowCount
 
 
+    try :
+        ChromeDriver.get(urlList['lotte'][1])
+    except TimeoutException as e:
+        print e
     for idx in range( len(pagingList) ) :
         rowCount = rowCount + 1
         carInfoSaveTest(pagingList[idx] )
     endTime =  datetime.datetime.now()
     totalTime = endTime - startTime
     print 'totalTime is : ', totalTime
-    ChromeDriver.quit()
+    # ChromeDriver.quit()
+
+
+
+
 
 else :
     # print "can't crawling"
