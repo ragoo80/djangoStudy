@@ -2,7 +2,8 @@
 
 import os
 import os.path
-import time
+import time, threading
+
 
 from urllib import urlopen
 import urllib2
@@ -37,8 +38,20 @@ default_save_path = '/Users/elbow/Documents/lotteRent/imgTest/'
 webdriver_path = '/Users/elbow/Documents/webdriver/'
 pageTotal = 1
 pagingList = [
-    "goDetail('66하9815','IJB1106');",
-    "goDetail('66하9815','ijb1106');"
+    "goDetail('13하4869','wjdwprhrh')",
+    "goDetail('65하 5079','anar798');",
+    "goDetail('67호1588','SUNOODA');",
+    "goDetail('46호3149','sexy__8022@naver.com');",
+    "goDetail('46호5557','zhak369');",
+    "goDetail('64하1183','JOSK2297');",
+    "goDetail('68호2891','JOSK2297');",
+    "goDetail('67하3567','lovelyhee7@naver.com');",
+    "goDetail('52하1085','p5861498@naver.com');",
+    "goDetail('64호3035','ohjimin');",
+    "goDetail('57하3229','qkekwndnjs');",
+    "goDetail('40하5624','hungry108');",
+    "goDetail('08호2606','navy0422');",
+    "goDetail('04호9244','ciw0818@naver.com');"
 ]
 # pagingList = [
 #     "goDetail('04호 9191','dhkim629');",
@@ -141,8 +154,11 @@ chrome_options.add_argument('headless')
 chrome_options.add_argument('no-sandbox')
 # ChromeDriver = webdriver.Chrome('/Users/elbow/Documents/webdriver/chromedriver', chrome_options=chrome_options)
 ChromeDriver = webdriver.Chrome(webdriver_path+'chromedriver')
-ChromeDriver.implicitly_wait(3)
+# ChromeDriver.implicitly_wait(3)
 rp = robotparser.RobotFileParser()
+
+
+
 
 def canFetch(robotsUrl, loadUrl) :
     rp.set_url(robotsUrl)
@@ -178,7 +194,11 @@ def page_has_loaded():
     page_state = ChromeDriver.execute_script(
         'return document.readyState;'
     )
+    print 'in page_has_loaded page_state : ', page_state
     return page_state
+
+
+
 
 def getFolder(forderName):
     if not( os.path.isdir( default_save_path + 'carImage/' + forderName ) ):
@@ -193,8 +213,9 @@ def getFolder(forderName):
         print 'already exsit!!'
         return True
 
+
 def needRefresh(target):
-    print 'needRefresh'
+    # print 'needRefresh'
     _target = target
     start_time = time.time()
     end_time = start_time + 100000
@@ -211,11 +232,13 @@ def needRefresh(target):
         else :
             return True
 
-
     # WebDriverWait(ChromeDriver, 10).until(
     #     expected_conditions.presence_of_element_located( (By.CSS_SELECTOR, target) )
     # )
     # return True
+
+
+
 
 def imgLoadCheck(url) :
     try:
@@ -226,6 +249,7 @@ def imgLoadCheck(url) :
         return False
 
 def saveImgage(carNumber, htmlSource):
+    print 'saveImgage'
     imgSrcList = htmlSource.select('.search_view_left .thumb img')
     # /publish/pcKor/images/common/bg_car_default.png
     for idx in range( len(imgSrcList) ) :
@@ -237,17 +261,18 @@ def saveImgage(carNumber, htmlSource):
             imgName = ''
             if imgSrcList[idx].get('alt') == '' :
                 if imgSrcList[idx].get('src') == '/publish/pcKor/images/common/bg_car_default.png' :
+                    print 'error img'
                     imgName = 'bg_car_default.jpg'
                 else :
                     imgName = 'image' + str(idx) + '.jpg'
             else :
                 imgName = imgSrcList[idx].get('alt')+str(idx)+'.jpg'
-            print imgName
+            # print imgName
             with open(
                     os.path.join(default_save_path + 'carImage/' + carNumber.decode('utf-8'),  imgName), mode="wb"
             ) as f:
                 f.write(dr)
-                print("저장되었습니다.")
+                # print("저장되었습니다.")
         except urllib2.HTTPError, e:
             print e.code
 
@@ -255,17 +280,15 @@ def saveImgage(carNumber, htmlSource):
 def carInfoSaveTest(argStr):
     ChromeDriver.get(urlList['lotte'][1])
     detail = argStr
-    time.sleep(1)
-    ChromeDriver.implicitly_wait(3)
-    ChromeDriver.refresh()
     if needRefresh('.list_car .img img') == True :
-        ChromeDriver.execute_script(detail)
-        # ChromeDriver.implicitly_wait(3)
-        # time.sleep(1)
         # ChromeDriver.refresh()
+        # time.sleep(2)
+        ChromeDriver.execute_script(detail)
         if needRefresh('.search_view_left .thumb img') == True :
             carNumber = detail.split("'")[1].replace(' ','')
             print 'carNumber', detail.split("'")[1].replace(' ','')
+            # ChromeDriver.refresh()
+            # time.sleep(1)
             htmlSource = BeautifulSoup(ChromeDriver.page_source, 'html.parser')
             if htmlSource.select('#error_wrap') == [] :
                 # print 'this page is not error page!!!'
@@ -274,6 +297,7 @@ def carInfoSaveTest(argStr):
 
                 # 차량 사진 없을 경우
                 if ( getFolder( carNumber ) == False ) :
+                    print 'good getFolder'
                     saveImgage(carNumber, htmlSource)
             else :
                 "need collecting error page info"
@@ -283,7 +307,7 @@ def carInfoSaveTest(argStr):
 
 rowCount = 1
 if canFetch(urlList['lotte'][0], urlList['lotte'][1]) :
-
+    ChromeDriver.implicitly_wait(3)
     for idx in range( len(pagingList) ) :
         carInfoSaveTest(pagingList[idx] )
 
