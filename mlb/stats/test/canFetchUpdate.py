@@ -41,28 +41,7 @@ pageTotal = 1
 #     "goDetail('66하9815','IJB1106');",
 #     "goDetail('66하9815','ijb1106');"
 # ]
-pagingList = [
-    "goDetail('04호 9191','dhkim629');",
-    "goDetail('06하 5928','teramin47@naver.com');",
-    "goDetail('13하4869','wjdwprhrh');",
-    "goDetail('28호 8762','ljh1452');",
-    "goDetail('35호3832','recess83');",
-    "goDetail('40하 4590','skyofsiea');",
-    "goDetail('40허 5976','osj2081');",
-    "goDetail('40호 7755','pcroom1990@naver.com');",
-    "goDetail('46호 1798','gamja124');",
-    "goDetail('50하 6731','JUNJIN1189');",
-    "goDetail('50하 6758','unicon90');",
-    "goDetail('54하 3888','dlrndus');",
-    "goDetail('54호 4281','SEOJIN7866');",
-    "goDetail('62하 4841','yep36@naver.com');",
-    "goDetail('62호 1635','lmj6693');",
-    "goDetail('62호 4885','begetal');",
-    "goDetail('62 호8575','aggupa');",
-    "goDetail('64호 2715','hmjang524@naver.com');",
-    "goDetail('69호 5259','kwon121514');"
-]
-
+pagingList = [u"goDetail('46\ud6385532','park2968@naver.com');", u"goDetail('18\ud5588384','skyminseok');", u"goDetail('69\ud6388833','tntnem');", u"goDetail('57\ud6387542','Gh389001@naver.com');", u"goDetail('65\ud5584181','wolfdog88');", u"goDetail('46\ud5583943','L0620HJ');", u"goDetail('52\ud5584883','tmdwjd101@naver.com');", u"goDetail('14\ud6383314','ahs8888');", u"goDetail('15\ud5581193','start1251');", u"goDetail('40\ud5581846','chicksik@hanmail.net');", u"goDetail('40\ud558 6126','coolmercy');", u"goDetail('57\ud5583843','fffsd432@naver.com');", u"goDetail('65\ud558 7785','ssjjhnhn@nate.com');", u"goDetail('63\ud5587673','kwangsroh');", u"goDetail('72\ud5582334','jsh050216@gmail.com');", u"goDetail('44\ud558 4674','6aksmef');", u"goDetail('68\ud6382325','kyseun1');", u"goDetail('63\ud6381684','junghyun8537');", u"goDetail('04\ud638 9191','dhkim629');", u"goDetail('18\ud6387343','brandy78');", u"goDetail('63\ud6382648','135110');", u"goDetail('40\ud6387798','lionel9020@gmail.com');", u"goDetail('57 \ud638 9023','wnsahsla');", u"goDetail('67\ud5583552','aranjuez11');", u"goDetail('52\ud6381587','silk1020@daum.net');", u"goDetail('44\ud6385509','powsdw77@naver.com');", u"goDetail('63\ud5585477','hyh0401@nate.com');", u"goDetail('52\ud6381069','sk3d3');", u"goDetail('57\ud5584992','iprince7');", u"goDetail('04\ud638 9739','alan0913@naver.com');", u"goDetail('46\ud6383262','sex_sexys@naver.com');", u"goDetail('18\ud6386735','ljh0358');", u"goDetail('63\ud5587628','jhjy0314@nate.com');", u"goDetail('67\ud5589254','ojh4997');", u"goDetail('62\ud6388811','sic781@hanmail.net');", u"goDetail('64\ud5585423','dudnwkdal');", u"goDetail('52\ud5581282','jang7480');", u"goDetail('69\ud6389081','ph___one@nate.com');", u"goDetail('65\ud638 6084','hanth2100');", u"goDetail('14\ud6382170','dmpp');", u"goDetail('52\ud6388181','djsyyyaaa@naver.com');", u"goDetail('67\ud6384400','aembaeng');", u"goDetail('44\ud6385696','eodyd557@naver.com');", u"goDetail('18\ud5586242','kj3003');", u"goDetail('68\ud5585253','dgw1002');", u"goDetail('27\ud6385930','ktk7373');", u"goDetail('67\ud5589080','virgo460@hanmail.net');", u"goDetail('52\ud5587321','iprince7');", u"goDetail('68\ud6386700','bsb92');", u"goDetail('65\ud5582019','kpit');", u"goDetail('40\ud558 5306','osj2081');", u"goDetail('40\ud5586139','JOSK2297');", u"goDetail('65\ud5588233','zzeng911');"]
 # pagingList = []
 
 # prefs = {'profile.managed_default_content_settings.images': 2} -> 느림
@@ -74,7 +53,7 @@ chrome_options.add_argument('no-sandbox')
 chrome_options.add_argument('application-cache')
 ChromeDriver = webdriver.Chrome(webdriver_path+'chromedriver', chrome_options=chrome_options)
 
-ChromeDriver.set_page_load_timeout(15)
+ChromeDriver.set_page_load_timeout(50)
 rp = robotparser.RobotFileParser()
 
 
@@ -196,8 +175,12 @@ def saveImgage(carNumber, htmlSource):
             else :
                 # imgName = imgSrcList[idx].get('alt')+str(idx)+'.jpg'
                 imgName = 'image'+str(idx)+'.jpg'
+
+            # print imgSrcList[idx].get('alt')
             with open(
-                    os.path.join(default_save_path + 'carImage/' + carNumber.decode('utf-8'),  imgName), "w"
+                    # '66하9815'-> carNumber.decode('utf-8')
+                    # '46\ud6385532'-> carNumber.encode('utf-8')
+                    os.path.join(default_save_path + 'carImage/' + carNumber.encode('utf-8'),  imgName), "w"
             ) as f:
                 f.write(dr)
                 # print("저장되었습니다.")
@@ -227,6 +210,7 @@ def carInfoSaveTest(argStr):
             htmlSource = BeautifulSoup(ChromeDriver.page_source, 'html.parser')
             if htmlSource.select('#error_wrap') == [] :
                 # print 'this page is not error page!!!'
+
                 carDetailInfo = getCarDetailInfo.find_detail_info(htmlSource)
                 # print carDetailInfo
 
@@ -265,8 +249,7 @@ def carInfoSaveTest(argStr):
 
                 wb.save(fileName)
 
-                # 차량 사진 없을 경우
-                # if ( getFolder( carNumber ) == False ) :
+                # if getFolder( carNumber ) == False :
                 #     saveImgage(carNumber, htmlSource)
             else :
                 "need collecting error page info"
@@ -301,11 +284,7 @@ if canFetch(urlList['lotte'][0], urlList['lotte'][1]) :
     endTime =  datetime.datetime.now()
     totalTime = endTime - startTime
     print 'totalTime is : ', totalTime
-    # ChromeDriver.quit()
-
-
-
-
+    ChromeDriver.quit()
 
 else :
     # print "can't crawling"
