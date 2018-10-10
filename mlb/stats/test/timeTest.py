@@ -48,23 +48,29 @@ pagingList = [
 	u"goDetail('03하9000.','leecj1210');"
 ]
 
-pattern = re.compile('[a-z|A-Z|ㄱ-]+')
-for idx in range(len(pagingList)) :
-	carNumber = pagingList[idx].split("'")[1].replace(' ','').replace('.','')
-	print carNumber
-	print len(carNumber)
-	print re.search(pattern, carNumber.encode('utf-8') )
+# pattern = re.compile('[a-z|A-Z|ㄱ-]+')
+# for idx in range(len(pagingList)) :
+# 	carNumber = pagingList[idx].split("'")[1]
+# 	print carNumber
+# 	print len(carNumber)
+# 	print re.search(pattern, carNumber.encode('utf-8') )
+# 	if len(carNumber) != 7 or re.search(pattern, carNumber.encode('utf-8') ) != None:
+# 		print '크롤링에 포함 안시킴 '
+# 	else :
+# 		print '크롤링에 포함 시킴 '
+# 	print '------------------------'
+
+
+def validatorCar(carNumber):
+	pattern = re.compile('[a-z|A-Z|ㄱ-]+')
 	if len(carNumber) != 7 or re.search(pattern, carNumber.encode('utf-8') ) != None:
-		print '크롤링에 포함 안시킴 '
+		return False
+	return True
+
+for idx in range(len(pagingList)) :
+	carNumber = pagingList[idx].split("'")[1].replace('.','')
+	print carNumber, len(carNumber)
+	if validatorCar(carNumber) is True :
+		print 'True 크롤링 포함'
 	else :
-		print '크롤링에 포함 시킴 '
-	print '------------------------'
-
-
-# print re.search(pattern, u"66\ud638")
-# print re.search(pattern, u"03하9000")
-# print re.search(pattern, "03하9000" )
-# print re.search(pattern, "52호13ㅂ8" )
-
-
-
+		print 'True 크롤링 포함안함'
