@@ -22,30 +22,18 @@ urlList = {
     'lotte' : ["https://www.lotterentacar.net/robots.txt", "https://www.lotterentacar.net/kor/longsuccession/getLongSuccessionList.do"]
 }
 
+# print os.getcwd() => 현재 경로 리턴 => 나중에 default_save_path를 os.getcwd() 값으로 변경해야 함.
 default_save_path = '/Users/elbow/Documents/lotteRent/'
 webdriver_path = '/Users/elbow/Documents/webdriver/'
 pageTotal = 1
-pagingList = []
 overLapList = []
 imgDownList = []
-pagingList = [
-    u"goDetail('04\ud638 1250','stereodesk@naver.com');",
-    u"goDetail('63\ud6384552','min97571@naver.com');",
-    u"goDetail('48\ud5583590','hemster');",
-    u"goDetail('49\ud5589007','neoxix');",
-
-    u"goDetail('65\ud5582149','looklook@nate.com');", u"goDetail('64\ud5589061','wndnjs5804');", u"goDetail('68\ud5583435','chs1972');", u"goDetail('46\ud6385532','park2968@naver.com');", u"goDetail('18\ud5588384','skyminseok');", u"goDetail('69\ud6388833','tntnem');", u"goDetail('57\ud6387542','Gh389001@naver.com');", u"goDetail('65\ud5584181','wolfdog88');", u"goDetail('46\ud5583943','L0620HJ');", u"goDetail('52\ud5584883','tmdwjd101@naver.com');", u"goDetail('14\ud6383314','ahs8888');", u"goDetail('15\ud5581193','start1251');", u"goDetail('40\ud5581846','chicksik@hanmail.net');", u"goDetail('40\ud558 6126','coolmercy');", u"goDetail('57\ud5583843','fffsd432@naver.com');", u"goDetail('65\ud558 7785','ssjjhnhn@nate.com');", u"goDetail('63\ud5587673','kwangsroh');", u"goDetail('72\ud5582334','jsh050216@gmail.com');", u"goDetail('44\ud558 4674','6aksmef');", u"goDetail('68\ud6382325','kyseun1');", u"goDetail('63\ud6381684','junghyun8537');", u"goDetail('04\ud638 9191','dhkim629');", u"goDetail('18\ud6387343','brandy78');", u"goDetail('63\ud6382648','135110');", u"goDetail('40\ud6387798','lionel9020@gmail.com');", u"goDetail('57 \ud638 9023','wnsahsla');", u"goDetail('67\ud5583552','aranjuez11');", u"goDetail('52\ud6381587','silk1020@daum.net');", u"goDetail('44\ud6385509','powsdw77@naver.com');", u"goDetail('63\ud5585477','hyh0401@nate.com');", u"goDetail('52\ud6381069','sk3d3');", u"goDetail('57\ud5584992','iprince7');", u"goDetail('04\ud638 9739','alan0913@naver.com');", u"goDetail('46\ud6383262','sex_sexys@naver.com');", u"goDetail('18\ud6386735','ljh0358');", u"goDetail('63\ud5587628','jhjy0314@nate.com');", u"goDetail('67\ud5589254','ojh4997');", u"goDetail('62\ud6388811','sic781@hanmail.net');", u"goDetail('64\ud5585423','dudnwkdal');", u"goDetail('52\ud5581282','jang7480');", u"goDetail('69\ud6389081','ph___one@nate.com');", u"goDetail('65\ud638 6084','hanth2100');", u"goDetail('14\ud6382170','dmpp');", u"goDetail('52\ud6388181','djsyyyaaa@naver.com');", u"goDetail('67\ud6384400','aembaeng');", u"goDetail('44\ud6385696','eodyd557@naver.com');", u"goDetail('18\ud5586242','kj3003');", u"goDetail('68\ud5585253','dgw1002');", u"goDetail('27\ud6385930','ktk7373');", u"goDetail('67\ud5589080','virgo460@hanmail.net');", u"goDetail('52\ud5587321','iprince7');", u"goDetail('68\ud6386700','bsb92');", u"goDetail('65\ud5582019','kpit');", u"goDetail('40\ud558 5306','osj2081');", u"goDetail('40\ud5586139','JOSK2297');", u"goDetail('65\ud5588233','zzeng911');", u"goDetail('04\ud638 2454','Jangbi73@naver.com');", u"goDetail('67\ud5588935','romeo37');", u"goDetail('63\ud6388728','p5411090');", u"goDetail('04\ud638 5684','ccb1020');", u"goDetail('65\ud5586676','mogikkm');", u"goDetail('46\ud6383292','tosoulmate');", u"goDetail('18\ud6387502','chals1129');", u"goDetail('04\ud6385079','okok8630');", u"goDetail('52\ud6381793','okok8630');", u"goDetail('57\ud6383573','goodnk2@naver.com');", u"goDetail('18\ud5581288','ejrwnddlek@naver.com');", u"goDetail('65\ud5587073','eunbi1226');", u"goDetail('52\ud5589582','ADQESW123');", u"goDetail('04\ud6387888','claydoll1980');", u"goDetail('68\ud5583718','bmyong');", u"goDetail('44\ud6388859','raser114@naver.com');", u"goDetail('32\ud6381402','kkkrlawhdghk@naver.com');", u"goDetail('63\ud6388687','dbdnjswhd24@naver.com');", u"goDetail('62\ud6386587','khlion99');", u"goDetail('40\ud5583156','jinkyo_han@naver.com');", u"goDetail('65\ud5586878','wkdrlgns91');", u"goDetail('63\ud558 5001','mje7942@gmail.com');", u"goDetail('18\ud5582622','silverlwh');", u"goDetail('40\ud558 6718','s0188');", u"goDetail('40\ud5583457','shwkdehs89');", u"goDetail('04\ud6387684','hyosook1220');", u"goDetail('04\ud6381379','webtle');", u"goDetail('69\ud6385546','wjdgj963');",
-    u"goDetail('57\ud5584970','happytnr');",
-
-    u"goDetail('18\ud6388118','lucky7max');",
-    u"goDetail('68\ud6389887','jungwan');",
-    u"goDetail('64\ud558 2239','kkkhhhee@hanmail.net');",
-    u"goDetail('01\ud5586072','byeong158@naver.com');",
-    u"goDetail('63\ud5585991','jhw2553');",
-    u"goDetail('40\ud5586718','s0188');",
-    u"goDetail('57\ud5583058','Aoouoo@naver.com');",
-]
+pagingList = []
 today = str( datetime.datetime.today().strftime('%Y-%m-%d') )
+scriptPath = default_save_path + 'userScript/'+ today +'_pagingData.npz'
+timeOutPath = default_save_path + 'log/'+ today + 'TimeoutException.txt'
+imgTimeOutPath = default_save_path + 'log/'+ today + 'ImgTimeoutException.txt'
+adminScriptPath = default_save_path + 'userScript/'+ today + '_롯데렌터카스크립트.txt'
 rp = robotparser.RobotFileParser()
 
 
@@ -71,6 +59,7 @@ def loadHTML(loadUrl) :
 # )
 # return True
 def getPageCount():
+    ChromeDriver.get(urlList['lotte'][1])
     htmlSource = BeautifulSoup(ChromeDriver.page_source, 'html.parser')
     last_btn = htmlSource.select('.btn_last')[0].get('onclick')
     start = last_btn.find("(")
@@ -100,13 +89,11 @@ def getPageCount():
 
     #관리자 확인용 스크립트 저장
     adminScriptList = ', \n'.join([ pagingList[idx].encode('utf-8') for idx in range(len(pagingList)) ])
-    scriptPath = default_save_path + 'userScript/'+ today + '_롯데렌터카스크립트.txt'
-    mode = "a" if os.path.exists(scriptPath) else "w"
-    with open(os.path.join(scriptPath), mode) as script:
+    mode = "a" if os.path.exists(adminScriptPath) else "w"
+    with open(os.path.join(adminScriptPath), mode) as script:
         script.write(adminScriptList)
         script.close
-
-    scriptPath = default_save_path + 'userScript/'+ today +'_pagingData.npz'
+    # pagingList scriptPath에 저장
     np.savez(scriptPath, np.array(pagingList))
 
     # for item in pagingList:
@@ -164,15 +151,16 @@ def downloadImgList():
     imgDriver_options.add_argument('no-sandbox')
     # imgDriver_options.add_argument('--headless')
     imgDriver = webdriver.Chrome(webdriver_path+'chromedriver', chrome_options=imgDriver_options)
-
     imgDriver.get(urlList['lotte'][1])
+
     if page_has_loaded(imgDriver) == 'complete' :
         if imgDriver.execute_script("return !!window.jQuery;") == False :
             print 'there is no jquery'
             imgDriver.execute_script("scr = document.createElement('script');scr.type=\"text/javascript\";scr.src=\"https://code.jquery.com/jquery-1.12.4.min.js\";document.head.append(scr);")
             time.sleep(3)
-
-        for idx in range( len(imgDownList) ) :
+        # 자동차 이미지 데이타 TimeoutException.txt 파일 있는지 확인 후, restart할것인지 결정
+        reStartImgIndex = findRestart(imgDownList, imgTimeOutPath)
+        for idx in range( reStartImgIndex, len(imgDownList) ) :
             carNumber = imgDownList[idx].split("'")[1]
             # print 'carNumber in downloadImgList : ', carNumber
             if validatorCar(carNumber) is True :
@@ -251,7 +239,6 @@ def saveImage(carNumber, htmlSource):
             # newImg.save(imgName)
 
 def setErrorReport(arg):
-    timeOutPath = default_save_path + 'log/'+ today + 'TimeoutException.txt'
     mode = "a" if os.path.exists(timeOutPath) else "w"
     with open(os.path.join(timeOutPath), mode) as log:
         log.write('when disconnected Time is : ' + str(datetime.datetime.now()) + '\n')
@@ -290,43 +277,43 @@ def carInfoSave(argStr):
                 carDetailInfo = getCarDetailInfo.find_detail_info(htmlSource)
                 # print carDetailInfo
 
-                # ws.cell( rowCount,1,carDetailInfo['basicInfo']['title'] )
-                # ws.cell( rowCount,2,carDetailInfo['basicInfo']['month_price'] )
-                # ws.cell( rowCount,3,carDetailInfo['basicInfo']['remain_month'] )
-                # ws.cell( rowCount,4,carDetailInfo['basicInfo']['date'] )
-                #
-                # ws.cell( rowCount,5,carDetailInfo['saleInfo']['saler'] )
-                # ws.cell( rowCount,6,carDetailInfo['saleInfo']['email'] )
-                # ws.cell( rowCount,7,carDetailInfo['saleInfo']['cellphone'] )
-                # ws.cell( rowCount,8,carDetailInfo['saleInfo']['area'] )
-                #
-                # ws.cell( rowCount,9,carDetailInfo['carInfo']['carMaker'] )
-                # ws.cell( rowCount,10,carDetailInfo['carInfo']['carName'] )
-                # ws.cell( rowCount,11,carDetailInfo['carInfo']['carNumber'] )
-                # ws.cell( rowCount,12,carDetailInfo['carInfo']['color'] )
-                # ws.cell( rowCount,13,carDetailInfo['carInfo']['kind'] )
-                # ws.cell( rowCount,14,carDetailInfo['carInfo']['fuel'] )
-                # ws.cell( rowCount,15,carDetailInfo['carInfo']['distance'] )
-                #
-                # ws.cell( rowCount,16,carDetailInfo['contractInfo']['status'] )
-                # ws.cell( rowCount,17,carDetailInfo['contractInfo']['product'] )
-                # ws.cell( rowCount,18,carDetailInfo['contractInfo']['Distance'] )
-                # ws.cell( rowCount,19,carDetailInfo['contractInfo']['takeOver'] )
-                # ws.cell( rowCount,20,carDetailInfo['contractInfo']['gurantee'] )
-                # ws.cell( rowCount,21,carDetailInfo['contractInfo']['advance'] )
-                # ws.cell( rowCount,22,carDetailInfo['contractInfo']['indemnfication'] )
-                # ws.cell( rowCount,23,carDetailInfo['contractInfo']['support'] )
-                #
-                # ws.cell( rowCount,24,arrayToString( carDetailInfo['optionInfo']['comfortable'] ))
-                # ws.cell( rowCount,25,arrayToString( carDetailInfo['optionInfo']['safety'] ))
-                # ws.cell( rowCount,26,arrayToString( carDetailInfo['optionInfo']['etc'] ))
-                #
-                # ws.cell( rowCount,27,carDetailInfo['desc'] )
-                #
-                # wb.save(fileName)
-                #
-                # if getFolder( carNumber.replace('.','') ) == False :
-                #     imgDownList.append(detail)
+                ws.cell( rowCount,1,carDetailInfo['basicInfo']['title'] )
+                ws.cell( rowCount,2,carDetailInfo['basicInfo']['month_price'] )
+                ws.cell( rowCount,3,carDetailInfo['basicInfo']['remain_month'] )
+                ws.cell( rowCount,4,carDetailInfo['basicInfo']['date'] )
+
+                ws.cell( rowCount,5,carDetailInfo['saleInfo']['saler'] )
+                ws.cell( rowCount,6,carDetailInfo['saleInfo']['email'] )
+                ws.cell( rowCount,7,carDetailInfo['saleInfo']['cellphone'] )
+                ws.cell( rowCount,8,carDetailInfo['saleInfo']['area'] )
+
+                ws.cell( rowCount,9,carDetailInfo['carInfo']['carMaker'] )
+                ws.cell( rowCount,10,carDetailInfo['carInfo']['carName'] )
+                ws.cell( rowCount,11,carDetailInfo['carInfo']['carNumber'] )
+                ws.cell( rowCount,12,carDetailInfo['carInfo']['color'] )
+                ws.cell( rowCount,13,carDetailInfo['carInfo']['kind'] )
+                ws.cell( rowCount,14,carDetailInfo['carInfo']['fuel'] )
+                ws.cell( rowCount,15,carDetailInfo['carInfo']['distance'] )
+
+                ws.cell( rowCount,16,carDetailInfo['contractInfo']['status'] )
+                ws.cell( rowCount,17,carDetailInfo['contractInfo']['product'] )
+                ws.cell( rowCount,18,carDetailInfo['contractInfo']['Distance'] )
+                ws.cell( rowCount,19,carDetailInfo['contractInfo']['takeOver'] )
+                ws.cell( rowCount,20,carDetailInfo['contractInfo']['gurantee'] )
+                ws.cell( rowCount,21,carDetailInfo['contractInfo']['advance'] )
+                ws.cell( rowCount,22,carDetailInfo['contractInfo']['indemnfication'] )
+                ws.cell( rowCount,23,carDetailInfo['contractInfo']['support'] )
+
+                ws.cell( rowCount,24,arrayToString( carDetailInfo['optionInfo']['comfortable'] ))
+                ws.cell( rowCount,25,arrayToString( carDetailInfo['optionInfo']['safety'] ))
+                ws.cell( rowCount,26,arrayToString( carDetailInfo['optionInfo']['etc'] ))
+
+                ws.cell( rowCount,27,carDetailInfo['desc'] )
+
+                wb.save(fileName)
+
+                if getFolder( carNumber.replace('.','') ) == False :
+                    imgDownList.append(detail)
             else :
                 print carNumber, " collecting error page info"
 
@@ -336,15 +323,29 @@ def processClose():
     os.system(killApp)
 # --------------------------------------------------------------------------------------------------------------
 
+def findRestart(findList, openPath):
+    if os.path.exists(openPath) :
+        scr = open(openPath, 'r')
+        txt = scr.readlines()
+        if len(list(txt)) == 1 and list(txt)[0].encode('utf-8') == '\n' :
+            return 0
+        else :
+            # ex)now process carNumber is : goDetail('04호 1250','stereodesk@naver.com'); => goDetail('04호 1250','stereodesk@naver.com');
+            reStartCar = list(txt)[len(txt)-1].split(':')[1].replace('\n', '', 1).replace(' ', '', 1).decode('utf-8')
+            if findList.count(reStartCar) > 0 :
+                return findList.index(reStartCar)
+    else :
+        return 0
+
+
 ws = None
 rowCount = 1
 
 chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument('--headless')
 # chrome_options.add_argument('--dns-prefetch-disable')
-
-# prefs = {'disk-cache-size': 4096, 'profile.managed_default_content_settings.images': 2}
-# chrome_options.add_experimental_option('prefs', prefs)
+prefs = {'disk-cache-size': 4096, 'profile.managed_default_content_settings.images': 2}
+chrome_options.add_experimental_option('prefs', prefs)
 
 chrome_options.add_argument('application-cache')
 chrome_options.add_argument('no-sandbox')
@@ -354,37 +355,40 @@ if canFetch(urlList['lotte'][0], urlList['lotte'][1]) :
 
     startTime =  datetime.datetime.now()
     ChromeDriver = webdriver.Chrome(webdriver_path+'chromedriver', chrome_options=chrome_options)
-    ChromeDriver.set_page_load_timeout(10)
+    ChromeDriver.set_page_load_timeout(150)
 
-    scriptPath = default_save_path + 'userScript/'+ today +'_pagingData.npz'
+    # today +'_pagingData.npz' => pagingList 데이타 있으면 재사용
     if os.path.exists( scriptPath ):
         scriptData = np.load(scriptPath)
-        pagingList = scriptData['arr_0']
+        pagingList = list(scriptData['arr_0'])
         # print len(pagingList) > 0
     else :
         getPageCount()
 
-    # fileName = default_save_path + 'excel/lotteRent-'+ today + '.xlsx'
-    # if os.path.exists( fileName ):
-    #     wb = load_workbook(fileName)
-    # else :
-    #     wb = load_workbook(default_save_path + 'excel/basic.xlsx')
-    #     ws = wb.active
-    #     ws.title = today
-    #     rowCount = ws.max_row
-    #     print 'first rowCount : ', rowCount
+    fileName = default_save_path + 'excel/lotteRent-'+ today + '.xlsx'
+    if os.path.exists( fileName ):
+        wb = load_workbook(fileName)
+    else :
+        wb = load_workbook(default_save_path + 'excel/basic.xlsx')
+        ws = wb.active
+        ws.title = today
+        rowCount = ws.max_row
+        print 'first rowCount : ', rowCount
 
-    for idx in range( len(pagingList) ) :
+    reStartIndex = findRestart(pagingList, timeOutPath)
+    for idx in range( reStartIndex, len(pagingList) ) :
         rowCount = rowCount + 1
         carInfoSave(pagingList[idx] )
 
+    # 여기서 자동차 데이타 TimeoutException.txt 파일 지워야 함
+    if os.path.exists(timeOutPath) : os.remove(timeOutPath)
     ChromeDriver.quit()
     processClose()
 
-    # if len(imgDownList) > 0 :
-    #     downloadImgList()
+    if len(imgDownList) > 0 :
+        downloadImgList()
     # print 'imgDownList is :', imgDownList
-
+    if os.path.exists(imgTimeOutPath) : os.remove(imgTimeOutPath)
 
     endTime =  datetime.datetime.now()
     totalTime = endTime - startTime
