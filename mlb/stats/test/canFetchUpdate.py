@@ -106,6 +106,8 @@ def page_has_loaded(driver):
     return page_state
 
 def getFolder(forderName):
+    forderName = forderName.replace(' ','')
+    print 'in getFolder : ', forderName
     if not( os.path.isdir( default_save_path + 'carImage/' + forderName ) ):
         # os.makedirs( os.path.join( default_save_path + 'carImage/' + forderName ) )
         # return 'making' + forderName
@@ -138,6 +140,7 @@ def validatorCar(carNumber):
     return True
 
 def overLap(carNumber):
+    carNumber = carNumber.replace(' ','')
     if overLapList.count(carNumber) > 0 :
         print 'overLap carNumber is : ',carNumber
         return True
